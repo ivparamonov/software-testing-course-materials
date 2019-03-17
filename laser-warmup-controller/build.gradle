@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'ru.ac.uniyar.testingcourse'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile files("lib/laser-warmup-controller.jar")
+    testCompile 'junit:junit:4.12'
+    testCompile 'pl.pragmatists:JUnitParams:1.1.1'
+    testCompile 'org.assertj:assertj-core:3.11.1'
+    testCompile 'org.jmockit:jmockit:1.45'
+}
+
+test {
+    jvmArgs "-javaagent:${classpath.find { it.name.contains("jmockit") }.absolutePath}"
+}
