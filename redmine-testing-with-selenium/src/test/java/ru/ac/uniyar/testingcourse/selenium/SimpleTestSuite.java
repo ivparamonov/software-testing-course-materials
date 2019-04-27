@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class SimpleTestSuite {
 
     private WebDriver driver;
-    
+
     public SimpleTestSuite() {
     }
 
@@ -24,26 +24,24 @@ public class SimpleTestSuite {
 
     @After
     public void finalizeDriver() {
-        driver.quit();        
+        driver.quit();
     }
-    
+
     @Test
     public void projectsLinkLeadsToProjectsPage() throws InterruptedException {
         driver.get("http://yar.fruct.org");
         WebElement projectsLink = driver.findElement(By.linkText("Projects"));
         projectsLink.click();
-        new WebDriverWait(driver, 1).until(
-                driver -> driver.getTitle().contains("Projects"));
+        assertThat(driver.getTitle()).contains("Projects");
     }
-    
+
     @Test
     public void userWithValidCredentialsCanLogin() {
         driver.get("https://yar.fruct.org/login");
         driver.findElement(By.id("username")).sendKeys("test");
         driver.findElement(By.id("password")).sendKeys("testtest");
         driver.findElement(By.id("password")).submit();
-        new WebDriverWait(driver, 1).until(
-                driver -> driver.findElement(By.tagName("body")).getText().contains("Logged in as test"));
+        assertThat(driver.findElement(By.tagName("body")).getText()).contains("Logged in as test");
     }
 
     @Test
@@ -56,7 +54,7 @@ public class SimpleTestSuite {
 
         driver.get("https://yar.fruct.org/projects");
         body = driver.findElement(By.tagName("body"));
-        assertThat(body.getText()).contains("Selenium Tests Project");        
+        assertThat(body.getText()).contains("Selenium Tests Project");
     }
-    
+
 }

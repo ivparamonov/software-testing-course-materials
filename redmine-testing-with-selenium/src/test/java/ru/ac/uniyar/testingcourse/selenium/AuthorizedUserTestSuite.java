@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class AuthorizedUserTestSuite {
 
     private static WebDriver driver;
-    
+
     @Before
     public void initializeDriver() {
         driver = new ChromeDriver();
@@ -21,7 +21,7 @@ public class AuthorizedUserTestSuite {
 
     @After
     public void finalizeDriver() {
-        driver.quit();        
+        driver.quit();
     }
 
     public AuthorizedUserTestSuite() {
@@ -33,14 +33,12 @@ public class AuthorizedUserTestSuite {
         WebElement newIssueLink = driver.findElement(By.className("new-issue"));
         assertThat(newIssueLink.getText()).isEqualTo("New issue");
         newIssueLink.click();
-        new WebDriverWait(driver, 1).until(
-                driver -> driver.getTitle().contains("New issue"));
-        
+        assertThat(driver.getTitle()).contains("New issue");
+
         String taskName = TestHelper.generateTaskName();
         driver.findElement(By.cssSelector("input#issue_subject")).sendKeys(taskName);
         driver.findElement(By.xpath("//input[@value='Create']")).click();
-        new WebDriverWait(driver, 1).until(
-                driver -> driver.getTitle().contains(taskName));
+        assertThat(driver.getTitle()).contains(taskName);
     }
 
     @Test
@@ -50,8 +48,7 @@ public class AuthorizedUserTestSuite {
         WebElement newIssueItem = driver.findElement(By.className("new-issue-sub"));
         plusButton.click();
         newIssueItem.click();
-        new WebDriverWait(driver, 1).until(
-                driver -> driver.getTitle().contains("New issue"));
+        assertThat(driver.getTitle()).contains("New issue");
     }
-    
+
 }
