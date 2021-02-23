@@ -12,7 +12,7 @@ public class LinearEquationSolver {
     
     /** 
      * Solve linear equation a * x = b.
-     * If there is no roots, returns <tt>null</tt>.
+     * If there is no roots, returns null.
      * If any number is a root, throws LinearEquationSolver.AnyNumberIsRootException.
      */
     public static Double solve(double a, double b) {
