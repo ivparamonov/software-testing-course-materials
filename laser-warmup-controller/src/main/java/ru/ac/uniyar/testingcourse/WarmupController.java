@@ -27,6 +27,7 @@ public class WarmupController {
     double currentWarmupDuration;
     //! Состояние лазера
     boolean on;
+
     /** Обозначить текущий момент в качестве момента включения лазера. */
     public void markLaserOn() {
         on = true;
@@ -41,11 +42,13 @@ public class WarmupController {
             currentWarmupDuration = 0;
         }
     }
+
     /** Обозначить текущий момент в качестве момента выключения лазера. */
     public void markLaserOff() {
         on = false;
         laserStopTime = System.currentTimeMillis() / 1000.0;
     }
+
     /**
      * Получить остаточное время прогрева лазера относительно текущего момента.
      * @return Остаточное время прогрева в секундах.
