@@ -68,7 +68,7 @@ public class Course {
     }
     
     /**
-     * Проверка, что список ожидаения для курса не пуст.
+     * Проверка, что список ожидания для курса не пуст.
      */
     public boolean hasWaitingList() {
         return waitingList.size() > 0;
